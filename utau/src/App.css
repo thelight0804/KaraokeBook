@@ -1,4 +1,9 @@
 .App {
   font-family: 'arial';
   transform: rotate(0.03deg);
+  margin: 1em;
+}
+h1{
+  color: #009688;
+  cursor: pointer;
 }
