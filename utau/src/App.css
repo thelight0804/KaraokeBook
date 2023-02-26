@@ -3,7 +3,11 @@
   transform: rotate(0.03deg);
   margin: 1em;
 }
-h1{
+.title{
   color: #009688;
   cursor: pointer;
+  font: bold 26px 'arial';
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 10px;
 }
