@@ -1,6 +1,9 @@
+//테마 색상 팔레트
+
 import {createTheme} from '@mui/material';
 import {teal, grey} from '@mui/material/colors';
 
+// 기존 테마 색상
 const MainTheme = createTheme({
   palette: {
     primary: {
@@ -15,6 +18,7 @@ const MainTheme = createTheme({
   }
 });
 
+//곡 목록 리스트
 const TabTheme = createTheme({
   palette:{
     primary: {

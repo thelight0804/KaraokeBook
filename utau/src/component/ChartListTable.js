@@ -1,8 +1,12 @@
-import {TabTheme} from '../resource/ColorTheme'
+// 곡 정보 리스트
+
+import {TabTheme} from '../data/ColorTheme'
 import {Table, TableBody, TableCell, Paper, TableRow, TableHead, TableContainer} from '@mui/material'
+import { useState } from 'react';
 
 function ChartListTable(props){
   const tabTheme = TabTheme.palette;
+  let [cell, setCell] = useState(["번호", "곡", "아티스트"]);
 
   const rows = [
     createData("번호1 - "+props.tab, "곡1 - "+props.tab, "아티스트1 - "+props.tab),
@@ -17,18 +21,15 @@ function ChartListTable(props){
       <Table stickyHeader aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{
-              backgroundColor: tabTheme.primary.main,
-              borderBottomColor: tabTheme.secondary.main
-              }} align='center'>번호</TableCell>
-            <TableCell sx={{
-              backgroundColor: tabTheme.primary.main,
-              borderBottomColor: tabTheme.secondary.main
-              }} align="left">곡</TableCell>
-            <TableCell sx={{
-              backgroundColor: tabTheme.primary.main,
-              borderBottomColor: tabTheme.secondary.main
-              }} align="left">아티스트</TableCell>
+            {cell.map(function(a, i){
+              return(
+                <TableCell sx={{
+                  backgroundColor: tabTheme.primary.main,
+                  borderBottomColor: tabTheme.secondary.main,
+                  fontWeight: "bold",
+                  }} align='center'>{cell[i]}</TableCell>
+              )
+            })}
           </TableRow>
         </TableHead>
         <TableBody>
