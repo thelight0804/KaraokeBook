@@ -2,7 +2,7 @@
 
 import {createTheme, ThemeProvider, Tabs, Tab} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import {setBrand} from '../data/Store'
+import {setBrand} from '../data/brandSlice'
 
 function BrandButton(){
   const theme = createTheme({
