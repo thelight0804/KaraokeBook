@@ -16,7 +16,7 @@ function BrandButton(){
 
   //Tab 선택에 따른 이벤트
   const handleChange = (event, newBrand) => {
-      dispatch(setBrand(newBrand));
+    dispatch(setBrand(newBrand));
   };
 
   return (
