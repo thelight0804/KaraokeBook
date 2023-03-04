@@ -1,25 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom'
+//react router : npm install react-router-dom@6
+//redux toolkit : npm install @reduxjs/toolkit react-redux
+//redux persist : npm install redux-persist
+//axios : npm install axios
+//react query : npm install @tanstack/react-query
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
 
 //react redux, persist
-import { Provider } from 'react-redux';
-import {store, persistor} from './data/Store'
-import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from "react-redux";
+import { store, persistor } from "./data/Store";
+import { PersistGate } from "redux-persist/integration/react";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+//react query
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+const queryClient = new QueryClient();
+
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}> 
+        <BrowserRouter>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </BrowserRouter>
+      </QueryClientProvider>
     </PersistGate>
   </Provider>
 );

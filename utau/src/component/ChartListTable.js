@@ -1,26 +1,42 @@
 // 곡 정보 리스트
+import {Table, TableBody, TableCell, Paper, TableRow, TableHead, TableContainer} from '@mui/material'
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios'
+import { useQuery } from '@tanstack/react-query';
 
 import {TabTheme} from '../data/ColorTheme'
-import {Table, TableBody, TableCell, Paper, TableRow, TableHead, TableContainer} from '@mui/material'
-import { useState } from 'react';
 
 function ChartListTable(props){
   const tabTheme = TabTheme.palette;
-  let [cell, setCell] = useState(["번호", "곡", "아티스트"]);
+  let brandSlice = useSelector((state) => state.brand)
 
+  let [cell, setCell] = useState(["번호", "곡", "아티스트"]);
+  let [tab, setTab] = useState(null);
+  let [brand, setBrand] = useState(null);
+
+  useEffect(()=>{
+    //tab과 브랜드 버튼 값 설정
+    props.tab == 0 ? setTab("인기 차트") : setTab("최신 곡")
+    brandSlice == 0 ? setBrand("TJ") : setBrand("KY")
+  })
+
+  // get karaoke API
+  let karaoke = useQuery(['query'], ()=>
+    axios.get('https://api.manana.kr/v2/karaoke/release.json?release=202303&brand=tj&orderBy=title ASC&page=1')
+    .then((result)=>{ console.log(result); })
+    .catch(()=>{console.log('Error');})
+  ) 
+  
   const rows = [
-    createData("번호1 - "+props.tab, "곡1 - "+props.tab, "아티스트1 - "+props.tab),
-    createData("번호2 - "+props.tab, "곡2 - "+props.tab, "아티스트2 - "+props.tab),
-    createData("번호3 - "+props.tab, "곡3 - "+props.tab, "아티스트3 - "+props.tab),
-    createData("번호4 - "+props.tab, "곡4 - "+props.tab, "아티스트4 - "+props.tab),
-    createData("번호5 - "+props.tab, "곡5 - "+props.tab, "아티스트5 - "+props.tab),
+    createData(tab + brand, tab + brand, tab + brand),
   ];
   
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow key="{i}">
             {cell.map(function(a, i){
               return(
                 <TableCell sx={{
