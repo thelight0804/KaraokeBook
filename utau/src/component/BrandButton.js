@@ -18,6 +18,7 @@ function BrandButton(){
   const handleChange = (event, newBrand) => {
     dispatch(setBrand(newBrand));
   };
+  {console.log("BrandButton")}
 
   return (
     <ThemeProvider theme={theme}>

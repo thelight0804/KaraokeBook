@@ -28,9 +28,9 @@ root.render(
     <PersistGate loading={null} persistor={persistor}>
       <QueryClientProvider client={queryClient}> 
         <BrowserRouter>
-          <React.StrictMode>
+          {/* <React.StrictMode> */}
             <App />
-          </React.StrictMode>
+          {/* </React.StrictMode> */}
         </BrowserRouter>
       </QueryClientProvider>
     </PersistGate>

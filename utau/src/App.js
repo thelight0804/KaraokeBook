@@ -48,7 +48,8 @@ function App() {
           indicatorColor="secondary"
           variant='fullWidth'
           style={{margin: 10 + 'px'}}
-        >
+          >
+          {console.log("App.Tabs")}
           <Tab value={0} style={{fontWeight: "bold"}} label="인기 차트" />
           <Tab value={1} style={{fontWeight: "bold"}} label="최신 곡" />
         </Tabs>
