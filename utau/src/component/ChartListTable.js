@@ -14,14 +14,11 @@ function ChartListTable(props){
 
   let [tab, setTab] = useState("인기 차트");
   let [brand, setBrand] = useState("TJ");
-
-  let getRecent = useQuery(["query"], () =>
-    axios
-    .get("https://api.manana.kr/v2/karaoke/release.json?release=202303&brand=tj&orderBy=title ASC&page=1")
-    .then((result) => {return result.data.data;})
-    .catch(() => {console.log("karaoke API get Error");})
-    )
-
+  let karaoke = useQuery(["karaokeData"], () =>
+    axios.get("https://api.manana.kr/v2/karaoke/release.json?release=202303&brand=tj&orderBy=title ASC&page=1")
+      .then((result) => { return result.data.data; })
+      .catch(() => { console.log("karaoke API get Error"); })
+  );
 
   //tab 값 설정
   useEffect(()=>{
@@ -40,7 +37,7 @@ function ChartListTable(props){
           <CreateTableHead/>
         </TableHead>
         <TableBody>
-          <CreateRow tab = {tab} brand={brand}/>
+          <CreateRow karaoke = {karaoke} />
         </TableBody>
       </Table>
     </TableContainer>
@@ -77,9 +74,14 @@ function CreateTableHead(){
 // 리스트 내용
 function CreateRow(props){
     //테이블 생성
-    const rows = [
-      createData(props.tab + props.brand, props.tab + props.brand, props.tab + props.brand),
-    ];
+    let data = props.karaoke.data
+    let rows = []
+
+    if (data != undefined){
+        data.map(function(a,i){
+          rows.push(createData(data[i].no, data[i].title, data[i].singer))
+        })
+    }
 
   return(
     <>
