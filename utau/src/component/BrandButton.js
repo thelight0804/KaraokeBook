@@ -30,7 +30,7 @@ function BrandButton(){
           style={{margin: 10 + 'px'}}
         >
           <Tab 
-            value={0}
+            value={"tj"}
             sx={{
               color: theme.palette.tj.main, //글자 색
               fontWeight: "bold", //글자 굵게
@@ -45,7 +45,7 @@ function BrandButton(){
             label="TJ미디어"
             disableRipple />
           <Tab 
-            value={1} 
+            value={"kumyoung"} 
             sx={{
               color: theme.palette.ky.main,
               fontWeight: "bold",

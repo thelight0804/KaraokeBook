@@ -10,7 +10,7 @@ import BrandButton from './component/BrandButton'
 import {MainTheme} from './data/ColorTheme'
 
 function App() {
-  const [tab, setTab] = useState(0);
+  const [tab, setTab] = useState(1);
 
   const handleChange = (event, newtab) => {
     setTab(newtab);
